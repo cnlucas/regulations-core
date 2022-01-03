@@ -29,7 +29,7 @@ class CompressedJSONField(models.TextField):
             content = {}
         return content
 
-    def from_db_value(self, value, expression, connection, context):
+    def from_db_value(self, value, expression, connection, context=None):
         """Satisfies Django 1.8's custom field types requirements."""
         return self.to_python(value)
 
