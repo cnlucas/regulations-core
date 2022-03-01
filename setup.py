@@ -8,7 +8,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'cached_property',
-        'django==3.2.10',
+        'django==3.2.12',
         'django-mptt~=0.13.4',
         'jsonschema',
         'six',
