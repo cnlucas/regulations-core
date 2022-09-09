@@ -21,7 +21,7 @@ class CompressedJSONField(models.TextField):
         if encoding == 'j':
             content = json.loads(content)
         elif encoding == 'jb6':
-            content = base64.decodestring(content.encode('utf-8'))
+            content = base64.decodebytes(content.encode('utf-8'))
             content = bz2.decompress(content)
             content = json.loads(content.decode('utf-8'))
         else:
@@ -40,7 +40,7 @@ class CompressedJSONField(models.TextField):
 
         if len(value) > 1000:  # somewhat arbitrary length to start compression
             # check if compressing is smaller
-            compressed = base64.encodestring(bz2.compress(
+            compressed = base64.encodebytes(bz2.compress(
                 value.encode('utf-8'))).decode('utf-8')
             if len(compressed) < len(value):
                 encoding += 'b6'
